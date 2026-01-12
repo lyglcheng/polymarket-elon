@@ -1,32 +1,36 @@
 // 时钟更新函数
 function updateClocks() {
-    // 获取当前时间
+    // 获取当前UTC时间
     const now = new Date();
+    const utcTime = new Date(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(), 
+                            now.getUTCHours(), now.getUTCMinutes(), now.getUTCSeconds());
     
-    // 更新北京时间 (UTC+8)
-    const beijingTime = new Date(now.getTime() + 8 * 60 * 60 * 1000);
+    // 计算各个时区的时间（基于UTC时间）
+    
+    // 北京时间 (UTC+8)
+    const beijingTime = new Date(utcTime.getTime() + 8 * 60 * 60 * 1000);
     updateClock('beijing-time', 'beijing-date', beijingTime, 'beijing');
     
-    // 更新PST时间 (UTC-8)
-    const pstTime = new Date(now.getTime() - 8 * 60 * 60 * 1000);
+    // 美国PST时间 (UTC-8) - 西海岸（如加州）
+    const pstTime = new Date(utcTime.getTime() - 8 * 60 * 60 * 1000);
     updateClock('pst-time', 'pst-date', pstTime, 'pst');
     
-    // 更新EST时间 (UTC-5)
-    const estTime = new Date(now.getTime() - 5 * 60 * 60 * 1000);
+    // 美国EST时间 (UTC-5) - 东海岸（如纽约）
+    const estTime = new Date(utcTime.getTime() - 5 * 60 * 60 * 1000);
     updateClock('est-time', 'est-date', estTime, 'est');
 }
 
 // 更新单个时钟的函数
 function updateClock(timeElementId, dateElementId, date, prefix) {
     // 获取小时、分钟、秒
-    const hours = date.getUTCHours();
-    const minutes = date.getUTCMinutes();
-    const seconds = date.getUTCSeconds();
+    const hours = date.getHours();
+    const minutes = date.getMinutes();
+    const seconds = date.getSeconds();
     
     // 获取年、月、日
-    const year = date.getUTCFullYear();
-    const month = (date.getUTCMonth() + 1).toString().padStart(2, '0');
-    const day = date.getUTCDate().toString().padStart(2, '0');
+    const year = date.getFullYear();
+    const month = (date.getMonth() + 1).toString().padStart(2, '0');
+    const day = date.getDate().toString().padStart(2, '0');
     
     // 更新数字时间显示
     const timeString = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
