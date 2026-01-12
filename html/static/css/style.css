@@ -1,0 +1,581 @@
+/* 全局样式 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Courier New', monospace;
+    background-color: #0a0a0a;
+    background-image: 
+        radial-gradient(circle at 25% 25%, rgba(0, 255, 255, 0.05) 0%, transparent 50%),
+        radial-gradient(circle at 75% 75%, rgba(0, 255, 255, 0.05) 0%, transparent 50%),
+        linear-gradient(to bottom, rgba(0, 0, 0, 0.9), rgba(0, 30, 60, 0.9));
+    color: #00ffff;
+    line-height: 1.6;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* 添加网格线条效果 */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        linear-gradient(rgba(0, 255, 255, 0.1) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 255, 255, 0.1) 1px, transparent 1px);
+    background-size: 50px 50px;
+    pointer-events: none;
+    z-index: -1;
+}
+
+/* 容器样式 */
+.container {
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 30px;
+    text-align: center;
+    background-color: rgba(0, 15, 30, 0.8);
+    border: 2px solid #00ffff;
+    border-radius: 15px;
+    box-shadow: 
+        0 0 20px rgba(0, 255, 255, 0.3),
+        inset 0 0 20px rgba(0, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
+    margin-top: 50px;
+}
+
+/* 标题样式 */
+h1 {
+    margin-bottom: 40px;
+    color: #00ffff;
+    font-size: 2.8rem;
+    text-shadow: 0 0 10px rgba(0, 255, 255, 0.8), 0 0 20px rgba(0, 255, 255, 0.5);
+    letter-spacing: 3px;
+    font-weight: bold;
+    animation: titleGlow 2s ease-in-out infinite alternate;
+}
+
+@keyframes titleGlow {
+    from {
+        text-shadow: 0 0 10px rgba(0, 255, 255, 0.8), 0 0 20px rgba(0, 255, 255, 0.5);
+    }
+    to {
+        text-shadow: 0 0 15px rgba(0, 255, 255, 1), 0 0 30px rgba(0, 255, 255, 0.7), 0 0 40px rgba(0, 255, 255, 0.3);
+    }
+}
+
+/* 时钟容器样式 */
+.clocks {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+/* 单个时钟样式 */
+.clock {
+    background-color: rgba(0, 20, 40, 0.9);
+    border: 1px solid #00ffff;
+    border-radius: 15px;
+    padding: 35px;
+    margin: 15px;
+    box-shadow: 
+        0 0 25px rgba(0, 255, 255, 0.2),
+        inset 0 0 25px rgba(0, 255, 255, 0.05);
+    width: calc(50% - 50px);
+    min-width: 300px;
+    max-width: 400px;
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.clock::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.1), transparent);
+    transition: left 0.5s ease;
+}
+
+.clock:hover {
+    transform: translateY(-8px);
+    box-shadow: 
+        0 0 35px rgba(0, 255, 255, 0.4),
+        inset 0 0 25px rgba(0, 255, 255, 0.1);
+    border-color: #00ffcc;
+}
+
+.clock:hover::before {
+    left: 100%;
+}
+
+/* 时钟标题样式 */
+.clock h2 {
+    margin-bottom: 25px;
+    color: #ff00ff;
+    font-size: 1.8rem;
+    font-weight: bold;
+    text-shadow: 0 0 8px rgba(255, 0, 255, 0.8), 0 0 15px rgba(255, 0, 255, 0.5);
+    letter-spacing: 2px;
+    animation: clockTitleGlow 1.5s ease-in-out infinite alternate;
+    border-bottom: 1px solid #ff00ff;
+    padding-bottom: 10px;
+    display: inline-block;
+}
+
+@keyframes clockTitleGlow {
+    from {
+        text-shadow: 0 0 8px rgba(255, 0, 255, 0.8), 0 0 15px rgba(255, 0, 255, 0.5);
+    }
+    to {
+        text-shadow: 0 0 12px rgba(255, 0, 255, 1), 0 0 25px rgba(255, 0, 255, 0.7), 0 0 35px rgba(255, 0, 255, 0.3);
+    }
+}
+
+/* 时间样式 */
+.time {
+    font-size: 3.2rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: #00ff00;
+    font-family: 'Courier New', monospace;
+    text-shadow: 0 0 10px rgba(0, 255, 0, 0.9), 0 0 20px rgba(0, 255, 0, 0.6), 0 0 30px rgba(0, 255, 0, 0.3);
+    letter-spacing: 2px;
+    background-color: rgba(0, 10, 0, 0.5);
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: 1px solid #00ff00;
+    display: inline-block;
+    animation: timeGlow 1s ease-in-out infinite alternate;
+}
+
+@keyframes timeGlow {
+    from {
+        text-shadow: 0 0 10px rgba(0, 255, 0, 0.9), 0 0 20px rgba(0, 255, 0, 0.6), 0 0 30px rgba(0, 255, 0, 0.3);
+        box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+    }
+    to {
+        text-shadow: 0 0 15px rgba(0, 255, 0, 1), 0 0 25px rgba(0, 255, 0, 0.8), 0 0 40px rgba(0, 255, 0, 0.5);
+        box-shadow: 0 0 15px rgba(0, 255, 0, 0.5);
+    }
+}
+
+/* 日期样式 */
+.date {
+    font-size: 1.4rem;
+    color: #ffff00;
+    text-shadow: 0 0 5px rgba(255, 255, 0, 0.8);
+    font-weight: bold;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+}
+
+/* 圆形钟表样式 */
+.clock-face {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background-color: rgba(0, 10, 30, 0.9);
+    background-image: 
+        radial-gradient(circle at center, rgba(0, 255, 255, 0.1) 0%, transparent 70%),
+        linear-gradient(45deg, rgba(255, 0, 255, 0.05) 0%, transparent 50%),
+        linear-gradient(-45deg, rgba(0, 255, 0, 0.05) 0%, transparent 50%);
+    border: 6px solid #00ffff;
+    position: relative;
+    margin: 20px auto;
+    box-shadow: 
+        0 0 30px rgba(0, 255, 255, 0.5),
+        inset 0 0 30px rgba(0, 255, 255, 0.1);
+    animation: clockPulse 3s ease-in-out infinite alternate;
+}
+
+@keyframes clockPulse {
+    from {
+        box-shadow: 
+            0 0 30px rgba(0, 255, 255, 0.5),
+            inset 0 0 30px rgba(0, 255, 255, 0.1);
+    }
+    to {
+        box-shadow: 
+            0 0 40px rgba(0, 255, 255, 0.7),
+            inset 0 0 40px rgba(0, 255, 255, 0.2);
+    }
+}
+
+/* 钟表指针样式 */
+.hand {
+    position: absolute;
+    transform-origin: bottom center;
+    transition: transform 0.05s cubic-bezier(0.4, 2.08, 0.55, 0.44);
+    border-radius: 50% 50% 0 0;
+    filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.5));
+}
+
+.hour-hand {
+    width: 6px;
+    height: 55px;
+    top: 45px;
+    left: 97px;
+    background: linear-gradient(to top, #ff00ff, #ff80ff);
+    box-shadow: 0 0 10px rgba(255, 0, 255, 0.8);
+}
+
+.minute-hand {
+    width: 4px;
+    height: 75px;
+    top: 25px;
+    left: 98px;
+    background: linear-gradient(to top, #00ffff, #80ffff);
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.8);
+}
+
+.second-hand {
+    width: 2px;
+    height: 85px;
+    top: 15px;
+    left: 99px;
+    background: linear-gradient(to top, #ff0000, #ff8080);
+    box-shadow: 0 0 15px rgba(255, 0, 0, 1);
+    animation: secondHandGlow 1s ease-in-out infinite alternate;
+}
+
+@keyframes secondHandGlow {
+    from {
+        box-shadow: 0 0 15px rgba(255, 0, 0, 1);
+    }
+    to {
+        box-shadow: 0 0 25px rgba(255, 0, 0, 1), 0 0 35px rgba(255, 0, 0, 0.7);
+    }
+}
+
+/* 中心圆点样式 */
+.center-dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background-color: #00ffff;
+    border: 2px solid #ff00ff;
+    position: absolute;
+    top: 93px;
+    left: 93px;
+    z-index: 10;
+    box-shadow: 
+        0 0 15px rgba(0, 255, 255, 1),
+        inset 0 0 5px rgba(255, 255, 255, 0.8);
+    animation: centerGlow 2s ease-in-out infinite alternate;
+}
+
+@keyframes centerGlow {
+    from {
+        box-shadow: 
+            0 0 15px rgba(0, 255, 255, 1),
+            inset 0 0 5px rgba(255, 255, 255, 0.8);
+    }
+    to {
+        box-shadow: 
+            0 0 25px rgba(0, 255, 255, 1), 0 0 35px rgba(0, 255, 255, 0.7),
+            inset 0 0 10px rgba(255, 255, 255, 1);
+    }
+}
+
+/* 钟表刻度样式 */
+.markings {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.marking {
+    position: absolute;
+    width: 4px;
+    height: 12px;
+    background-color: #00ffff;
+    left: 98px;
+    transform-origin: center 100px;
+    box-shadow: 0 0 8px rgba(0, 255, 255, 0.8);
+    border-radius: 2px;
+}
+
+/* 12个刻度的位置 */
+.marking:nth-child(1) { transform: rotate(30deg); }
+.marking:nth-child(2) { transform: rotate(60deg); }
+.marking:nth-child(3) { transform: rotate(90deg); }
+.marking:nth-child(4) { transform: rotate(120deg); }
+.marking:nth-child(5) { transform: rotate(150deg); }
+.marking:nth-child(6) { transform: rotate(180deg); }
+.marking:nth-child(7) { transform: rotate(210deg); }
+.marking:nth-child(8) { transform: rotate(240deg); }
+.marking:nth-child(9) { transform: rotate(270deg); }
+.marking:nth-child(10) { transform: rotate(300deg); }
+.marking:nth-child(11) { transform: rotate(330deg); }
+.marking:nth-child(12) { transform: rotate(360deg); }
+
+/* 日期样式 */
+.date {
+    font-size: 1.2rem;
+    color: #7f8c8d;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .clocks {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .clock {
+        width: 45%;
+        min-width: 280px;
+        max-width: 320px;
+        padding: 25px;
+        margin: 10px;
+    }
+    
+    h1 {
+        font-size: 2rem;
+        text-shadow: 0 0 8px rgba(0, 170, 255, 0.9), 0 0 16px rgba(0, 170, 255, 0.6);
+    }
+    
+    .time {
+        font-size: 2.5rem;
+        text-shadow: 0 0 8px rgba(0, 255, 0, 0.9), 0 0 16px rgba(0, 255, 0, 0.6);
+        letter-spacing: 1px;
+        padding: 8px 15px;
+    }
+    
+    .clock-title {
+        font-size: 1.4rem;
+        text-shadow: 0 0 6px rgba(255, 0, 255, 0.9), 0 0 12px rgba(255, 0, 255, 0.6);
+    }
+    
+    .clock-face {
+        width: 180px;
+        height: 180px;
+        box-shadow: 
+            0 0 20px rgba(0, 255, 255, 0.5),
+            inset 0 0 20px rgba(0, 255, 255, 0.1);
+    }
+    
+    .center-dot {
+        width: 12px;
+        height: 12px;
+        top: 84px;
+        left: 84px;
+    }
+    
+    .marking {
+        transform-origin: center 90px;
+    }
+    
+    .hour-hand {
+        width: 5px;
+        height: 50px;
+        top: 40px;
+        left: 87.5px;
+    }
+    
+    .minute-hand {
+        width: 3px;
+        height: 65px;
+        top: 25px;
+        left: 88.5px;
+    }
+    
+    .second-hand {
+        width: 2px;
+        height: 75px;
+        top: 15px;
+        left: 89px;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.8rem;
+        padding: 15px;
+    }
+    
+    .time {
+        font-size: 2rem;
+        padding: 6px 12px;
+    }
+    
+    .clock-face {
+        width: 160px;
+        height: 160px;
+    }
+    
+    .hour-hand {
+        width: 5px;
+        height: 45px;
+        top: 35px;
+        left: 77.5px;
+    }
+    
+    .minute-hand {
+        width: 3px;
+        height: 55px;
+        top: 25px;
+        left: 78.5px;
+    }
+    
+    .second-hand {
+        width: 2px;
+        height: 65px;
+        top: 15px;
+        left: 79px;
+    }
+    
+    .center-dot {
+        top: 74px;
+        left: 74px;
+    }
+    
+    .marking {
+        transform-origin: center 80px;
+    }
+}
+
+/* 更小屏幕的响应式设计 */
+@media (max-width: 640px) {
+    .clocks {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .clock {
+        width: 90%;
+        min-width: 260px;
+        padding: 20px;
+        margin: 10px;
+    }
+    
+    h1 {
+        font-size: 1.8rem;
+        padding: 15px;
+    }
+    
+    .time {
+        font-size: 2rem;
+        padding: 6px 12px;
+    }
+    
+    .clock-face {
+        width: 160px;
+        height: 160px;
+    }
+    
+    .hour-hand {
+        width: 5px;
+        height: 45px;
+        top: 35px;
+        left: 77.5px;
+    }
+    
+    .minute-hand {
+        width: 3px;
+        height: 55px;
+        top: 25px;
+        left: 78.5px;
+    }
+    
+    .second-hand {
+        width: 2px;
+        height: 65px;
+        top: 15px;
+        left: 79px;
+    }
+    
+    .center-dot {
+        top: 74px;
+        left: 74px;
+    }
+    
+    .marking {
+        transform-origin: center 80px;
+    }
+}
+
+/* 管理界面样式 */
+.track-row {
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.track-row:hover {
+    background-color: rgba(14, 165, 233, 0.1);
+}
+
+.status-active {
+    color: #10b981;
+    font-weight: bold;
+}
+
+.status-inactive {
+    color: #ef4444;
+    font-weight: bold;
+}
+
+.expandable-row {
+    display: none;
+}
+
+.expandable-content {
+    padding: 15px;
+    background-color: rgba(15, 23, 42, 0.8);
+    border-radius: 8px;
+    margin: 10px 0;
+}
+
+.hourly-chart {
+    margin-top: 15px;
+}
+
+.hourly-bar {
+    background: linear-gradient(to top, rgba(14, 165, 233, 0.8), rgba(59, 130, 246, 0.8));
+    border-radius: 4px 4px 0 0;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(14, 165, 233, 0.3);
+    position: relative;
+    z-index: 1;
+}
+
+.hourly-bar:hover {
+    background: linear-gradient(to top, rgba(14, 165, 233, 1), rgba(59, 130, 246, 1));
+    box-shadow: 0 4px 8px rgba(14, 165, 233, 0.5);
+    transform: scaleY(1.05);
+}
+
+/* 防止数字动画重影 */
+.hourly-bar::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: inherit;
+    border-radius: inherit;
+    opacity: 0;
+    z-index: -1;
+}
+
+/* 移除可能导致重影的动画效果 */
+.hourly-chart * {
+    animation: none !important;
+    text-shadow: none !important;
+}

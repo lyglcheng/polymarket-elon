@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>双时钟显示</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>实时时钟显示</h1>
+        <div class="clocks">
+            <div class="clock" id="pst-clock">
+                <h2>美国PST时间</h2>
+                <!-- 圆形钟表 -->
+                <div class="clock-face">
+                    <div class="hand hour-hand" id="pst-hour"></div>
+                    <div class="hand minute-hand" id="pst-minute"></div>
+                    <div class="hand second-hand" id="pst-second"></div>
+                    <div class="center-dot"></div>
+                    <!-- 钟表刻度 -->
+                    <div class="markings">
+                        <div class="marking"></div>
+                        <div class="marking"></div>
+                        <div class="marking"></div>
+                        <div class="marking"></div>
+                        <div class="marking"></div>
+                        <div class="marking"></div>
+                        <div class="marking"></div>
+                        <div class="marking"></div>
+                        <div class="marking"></div>
+                        <div class="marking"></div>
+                        <div class="marking"></div>
+                        <div class="marking"></div>
+                    </div>
+                </div>
+                <!-- 数字时间显示 -->
+                <div class="time" id="pst-time">--:--:--</div>
+                <div class="date" id="pst-date">----年--月--日</div>
+            </div>
+            <div class="clock" id="beijing-clock">
+                <h2>北京时间 (CST)</h2>
+                <!-- 圆形钟表 -->
+                <div class="clock-face">
+                    <div class="hand hour-hand" id="beijing-hour"></div>
+                    <div class="hand minute-hand" id="beijing-minute"></div>
+                    <div class="hand second-hand" id="beijing-second"></div>
+                    <div class="center-dot"></div>
+                    <!-- 钟表刻度 -->
+                    <div class="markings">
+                        <div class="marking"></div>
+                        <div class="marking"></div>
+                        <div class="marking"></div>
+                        <div class="marking"></div>
+                        <div class="marking"></div>
+                        <div class="marking"></div>
+                        <div class="marking"></div>
+                        <div class="marking"></div>
+                        <div class="marking"></div>
+                        <div class="marking"></div>
+                        <div class="marking"></div>
+                        <div class="marking"></div>
+                    </div>
+                </div>
+                <!-- 数字时间显示 -->
+                <div class="time" id="beijing-time">--:--:--</div>
+                <div class="date" id="beijing-date">----年--月--日</div>
+            </div>
+        </div>
+    </div>
+    <script src="/static/js/clock.js"></script>
+</body>
+</html>
