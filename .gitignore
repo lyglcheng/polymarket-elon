@@ -31,3 +31,7 @@ venv/
 *.swp
 *.swo
 *~
+
+# SSH
+id_rsa
+id_rsa.pub
