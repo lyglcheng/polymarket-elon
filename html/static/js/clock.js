@@ -10,6 +10,10 @@ function updateClocks() {
     // 更新PST时间 (UTC-8)
     const pstTime = new Date(now.getTime() - 8 * 60 * 60 * 1000);
     updateClock('pst-time', 'pst-date', pstTime, 'pst');
+    
+    // 更新EST时间 (UTC-5)
+    const estTime = new Date(now.getTime() - 5 * 60 * 60 * 1000);
+    updateClock('est-time', 'est-date', estTime, 'est');
 }
 
 // 更新单个时钟的函数

@@ -343,8 +343,8 @@
                 </div>
             </div>
             
-            <!-- 双时钟显示 -->
-            <div style="display: flex; gap: 20px; flex: 1; min-width: 350px; justify-content: flex-end;">
+            <!-- 三时钟显示 -->
+            <div style="display: flex; gap: 20px; flex: 1; min-width: 550px; justify-content: flex-end; flex-wrap: wrap;">
                 <!-- 美国PST时间 -->
                 <div style="text-align: center; padding: 10px; background: rgba(30, 41, 59, 0.8); border-radius: 8px; border: 1px solid rgba(14, 165, 233, 0.3); min-width: 170px;">
                     <div style="font-size: 12px; color: #94a3b8; margin-bottom: 5px;">美国PST时间</div>
@@ -372,6 +372,34 @@
                     </div>
                     <div style="font-size: 18px; font-weight: bold; color: #0ea5e9;"><span id="pst-time">--:--:--</span></div>
                     <div style="font-size: 10px; color: #94a3b8; margin-top: 3px;"><span id="pst-date">2026年01月12日</span></div>
+                </div>
+                <!-- 美国EST时间 -->
+                <div style="text-align: center; padding: 10px; background: rgba(30, 41, 59, 0.8); border-radius: 8px; border: 1px solid rgba(14, 165, 233, 0.3); min-width: 170px;">
+                    <div style="font-size: 12px; color: #94a3b8; margin-bottom: 5px;">美国EST时间</div>
+                    <!-- 圆形钟表 -->
+                    <div class="clock-face" style="width: 120px; height: 120px; margin: 10px auto;">
+                        <div class="hand hour-hand" id="est-hour" style="width: 4px; height: 30px; top: 30px; left: 58px;"></div>
+                        <div class="hand minute-hand" id="est-minute" style="width: 3px; height: 40px; top: 20px; left: 58.5px;"></div>
+                        <div class="hand second-hand" id="est-second" style="width: 2px; height: 45px; top: 15px; left: 59px;"></div>
+                        <div class="center-dot" style="width: 8px; height: 8px; top: 56px; left: 56px;"></div>
+                        <!-- 钟表刻度 -->
+                            <div class="markings">
+                                <div class="marking" style="left: 58px; transform-origin: center 60px;"></div>
+                                <div class="marking" style="left: 58px; transform-origin: center 60px;"></div>
+                                <div class="marking" style="left: 58px; transform-origin: center 60px;"></div>
+                                <div class="marking" style="left: 58px; transform-origin: center 60px;"></div>
+                                <div class="marking" style="left: 58px; transform-origin: center 60px;"></div>
+                                <div class="marking" style="left: 58px; transform-origin: center 60px;"></div>
+                                <div class="marking" style="left: 58px; transform-origin: center 60px;"></div>
+                                <div class="marking" style="left: 58px; transform-origin: center 60px;"></div>
+                                <div class="marking" style="left: 58px; transform-origin: center 60px;"></div>
+                                <div class="marking" style="left: 58px; transform-origin: center 60px;"></div>
+                                <div class="marking" style="left: 58px; transform-origin: center 60px;"></div>
+                                <div class="marking" style="left: 58px; transform-origin: center 60px;"></div>
+                            </div>
+                    </div>
+                    <div style="font-size: 18px; font-weight: bold; color: #0ea5e9;"><span id="est-time">--:--:--</span></div>
+                    <div style="font-size: 10px; color: #94a3b8; margin-top: 3px;"><span id="est-date">2026年01月12日</span></div>
                 </div>
                 <!-- 北京时间 -->
                 <div style="text-align: center; padding: 10px; background: rgba(30, 41, 59, 0.8); border-radius: 8px; border: 1px solid rgba(14, 165, 233, 0.3); min-width: 170px;">
