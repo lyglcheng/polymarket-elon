@@ -4,8 +4,9 @@ __pycache__/
 *$py.class
 
 # Database
-*.db
-*.sqlite
+# *.db
+# *.sqlite
+polymarket.db
 
 # SVN
 .svn/
