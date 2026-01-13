@@ -222,6 +222,11 @@ def insert_or_update_stats(tracking_id, stats_data):
         ))
         print(f"插入统计数据: {tracking_id}")
     
+    # 如果任务已完成，将tracking表中的isActive设置为0
+    if stats_data.get('isComplete'):
+        cursor.execute('UPDATE polymarket_tracking SET isActive = 0 WHERE id = ?', (tracking_id,))
+        print(f"任务 {tracking_id} 已完成，将isActive设置为0")
+    
     conn.commit()
     conn.close()
     
@@ -232,11 +237,22 @@ def insert_or_update_stats(tracking_id, stats_data):
     return previous_cumulative, stats_data.get('cumulative')
 
 def get_all_trackings():
-    """获取所有跟踪数据"""
+    """获取所有跟踪数据，活跃任务按剩余天数升序排列"""
     conn = sqlite3.connect(db_path)
     cursor = conn.cursor()
     
-    cursor.execute('SELECT * FROM polymarket_tracking')
+    # 联合查询跟踪数据和统计数据，按isActive降序、daysRemaining升序排列
+    cursor.execute('''
+    SELECT t.*, s.daysRemaining, s.isComplete
+    FROM polymarket_tracking t
+    LEFT JOIN polymarket_tracking_stats s ON t.id = s.trackingId
+    ORDER BY 
+        t.isActive DESC,  -- 活跃任务在前
+        CASE 
+            WHEN t.isActive = 1 AND s.daysRemaining IS NOT NULL THEN s.daysRemaining
+            ELSE 99999  -- 非活跃或无剩余天数的任务排在后面
+        END ASC
+    ''')
     rows = cursor.fetchall()
     
     # 将结果转换为字典列表
@@ -255,7 +271,9 @@ def get_all_trackings():
             'config': json.loads(row[9]) if row[9] else {},
             'createdAt': row[10],
             'updatedAt': row[11],
-            'user': json.loads(row[12]) if row[12] else None
+            'user': json.loads(row[12]) if row[12] else None,
+            'daysRemaining': row[13],  # 添加剩余天数
+            'isComplete': bool(row[14]) if row[14] is not None else False  # 添加完成状态
         }
         trackings.append(tracking)
     

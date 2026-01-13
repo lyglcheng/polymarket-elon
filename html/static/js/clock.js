@@ -45,10 +45,10 @@ function updateClock(timeElementId, dateElementId, date, prefix) {
 
 // 更新钟表指针角度的函数
 function updateClockHands(hours, minutes, seconds, prefix) {
-    // 计算指针角度
-    const secondDegrees = (seconds / 60) * 360 + 90;
-    const minuteDegrees = (minutes / 60) * 360 + (seconds / 60) * 6 + 90;
-    const hourDegrees = (hours / 12) * 360 + (minutes / 60) * 30 + 90;
+    // 计算指针角度（从0度开始，指向12点钟方向）
+    const secondDegrees = (seconds / 60) * 360;
+    const minuteDegrees = (minutes / 60) * 360 + (seconds / 60) * 6;
+    const hourDegrees = (hours / 12) * 360 + (minutes / 60) * 30;
     
     // 更新指针旋转
     const hourHand = document.getElementById(`${prefix}-hour`);
